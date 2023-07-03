@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="images/dw.png" />
+    <title>Contact Me</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html"><img src="images/dw.png" alt="" /></a>
+          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">My Project</a></li>
+        </ul>
+      </nav>
+      <a class="btn" href="contact.html"><button>Contact Me</button></a>
+    </header>
+    <!-- /navbar -->
+
+    <!-- contact -->
+    <div class="contact-container">
+      <h3>get in touch</h3>
+      <form class="form-container">
+        <div>
+          <label>Name</label>
+          <input id="input-name" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input id="input-email" />
+        </div>
+        <div>
+          <label>Phone Namber</label>
+          <input id="input-phone" />
+        </div>
+        <div>
+          <label>Subject</label>
+          <select id="input-subject">
+            <option hidden></option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
+            <option value="Fullstack Developer">Fullstack Developer</option>
+          </select>
+        </div>
+        <div>
+          <label>Your Message</label>
+          <textarea id="input-message"></textarea>
+        </div>
+        <div class="btn-position">
+          <button type="submit" onclick="submitData(event)">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script src="js/form_contact.js"></script>
+  </body>
+</html>
