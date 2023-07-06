@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-project.css" />
+    <link rel="icon" href="images/dw.png" />
+    <title>Task Day4</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html"><img src="images/dw.png" alt="" /></a>
+          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="project.html">My Project</a></li>
+        </ul>
+      </nav>
+      <a class="btn" href="contact.html"><button>Contact Me</button></a>
+    </header>
+    <!-- /navbar -->
+
+    <!-- project -->
+    <div class="my-project">
+      <!-- form project-->
+      <div class="container-project">
+        <h2>add my project</h2>
+        <form onsubmit="addProject(event)">
+          <div class="project-name">
+            <label for="input-project-name">Project Name</label>
+            <input type="text" id="input-project-name" />
+          </div>
+          <div class="date">
+            <div class="start-date">
+              <label for="input-start-date">Start Date</label>
+              <input type="date" id="input-start-date" />
+            </div>
+            <div class="end-date">
+              <label for="input-end-date">End Date</label>
+              <input type="date" id="input-end-date" />
+            </div>
+          </div>
+          <div class="desc">
+            <label for="input-description">Description</label>
+            <textarea id="input-description"></textarea>
+          </div>
+          <div class="wrapper-techno">
+            <label for="">Technologies</label>
+            <div class="techno">
+              <div class="techno-left">
+                <div class="framework">
+                  <input type="checkbox" id="input-nodejs" class="input-multichecked" />
+                  <label for="input-nodejs">Node Js</label>
+                </div>
+                <div class="framework">
+                  <input type="checkbox" id="input-reactjs" class="input-multichecked" />
+                  <label for="input-reactjs">React Js</label>
+                </div>
+              </div>
+              <div class="techno-right">
+                <div class="framework">
+                  <input type="checkbox" id="input-nextjs" class="input-multichecked" />
+                  <label for="input-nextjs">Next Js</label>
+                </div>
+                <div class="framework">
+                  <input type="checkbox" id="input-typoscript" class="input-multichecked" />
+                  <label for="input-typoscript">TypoScript</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="up-img">
+            <label>Upload Image</label>
+            <div class="input-blog-image-group">
+              <label for="input-blog-image">
+                <p>Choose</p>
+                <i class="fa-sharp fa-solid fa-file-import"></i>
+              </label>
+              <input type="file" id="input-blog-image" hidden />
+            </div>
+          </div>
+          <div class="btn-submit">
+            <button>Submit</button>
+          </div>
+        </form>
+      </div>
+      <!-- /form project -->
+    </div>
+
+    <!-- list project -->
+    <div class="wrapper-list-project">
+      <div class="list-project">
+        <h2>my project</h2>
+        <div id="contents-project" class="wrapper-list">
+          <!--dynamic content would be here -->
+        </div>
+      </div>
+    </div>
+    <!-- /list project -->
+
+    <script src="js/project.js"></script>
+  </body>
+</html>
