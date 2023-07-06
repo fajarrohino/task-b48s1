@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-project.css" />
+    <link rel="icon" href="images/dw.png" ” />
+    <title>Task Day4</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html"><img src="images/dw.png" alt="" /></a>
+          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="project.html">My Project</a></li>
+        </ul>
+      </nav>
+      <a class="btn" href="contact.html"><button>Contact Me</button></a>
+    </header>
+    <!-- /navbar -->
+
+    <!-- project -->
+    <div class="my-project">
+      <!-- form project-->
+      <div class="container-project">
+        <h2>add my project</h2>
+        <form id="addProject">
+          <div class="project-name">
+            <label for="">Project Name</label>
+            <input type="text" />
+          </div>
+          <div class="date">
+            <div class="start-date">
+              <label for="">Start Date</label>
+              <input type="date" />
+            </div>
+            <div class="end-date">
+              <label for="">End Date</label>
+              <input type="date" />
+            </div>
+          </div>
+          <div class="desc">
+            <label for="">Description</label>
+            <textarea></textarea>
+          </div>
+          <div class="wrapper-techno">
+            <label for="">Technologies</label>
+            <div class="techno">
+              <div class="techno-left">
+                <div class="framework">
+                  <input type="checkbox" />
+                  <label for="">Node Js</label>
+                </div>
+                <div class="framework">
+                  <input type="checkbox" />
+                  <label for="">React Js</label>
+                </div>
+              </div>
+              <div class="techno-right">
+                <div class="framework">
+                  <input type="checkbox" />
+                  <label for="">Next Js</label>
+                </div>
+                <div class="framework">
+                  <input type="checkbox" />
+                  <label for="">TypoScript</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="up-img">
+            <label for="input-file">Upload Image</label>
+            <label for="input-file" class="input-file">
+              <span>choose</span>
+              <input type="file" id="input-file" hidden />
+              <i class="fa-sharp fa-solid fa-file-import"></i>
+            </label>
+          </div>
+          <div class="btn-submit">
+            <button>Submit</button>
+          </div>
+        </form>
+      </div>
+      <!-- /form project -->
+    </div>
+
+    <!-- list project -->
+    <div class="wrapper-list-project">
+      <div class="list-project">
+        <h2>my project</h2>
+        <div class="wrapper-list">
+          <div class="list1">
+            <div class="project-img">
+              <img src="images/code.jpg" alt="" />
+            </div>
+            <div class="project-content">
+              <h4>
+                <a href="#">Eannoy</a>
+              </h4>
+              <div class="detail-project">
+                <span>durasi : 3 bulan</span>
+                <br /><br />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sunt omnis modi nostrum</p>
+              </div>
+              <div class="framework">
+                <i class="fa-brands fa-js fa-2x" id="javascript"></i>
+                <i class="fa-brands fa-php fa-2x" id="php"></i>
+                <i class="fa-brands fa-java fa-2x" id="java"></i>
+                <i class="fa-brands fa-react fa-2x" id="reactsJS"></i>
+              </div>
+              <div class="btn-group">
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="list1">
+            <div class="project-img">
+              <img src="images/code.jpg" alt="" />
+            </div>
+            <div class="project-content">
+              <h4>
+                <a href="#">Eannoy</a>
+              </h4>
+              <div class="detail-project">
+                <span>durasi : 3 bulan</span>
+                <br /><br />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sunt omnis modi nostrum</p>
+              </div>
+              <div class="framework">
+                <i class="fa-brands fa-js fa-2x" id="javascript"></i>
+                <i class="fa-brands fa-php fa-2x" id="php"></i>
+                <i class="fa-brands fa-java fa-2x" id="java"></i>
+                <i class="fa-brands fa-react fa-2x" id="reactsJS"></i>
+              </div>
+              <div class="btn-group">
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="list1">
+            <div class="project-img">
+              <img src="images/code.jpg" alt="" />
+            </div>
+            <div class="project-content">
+              <h4>
+                <a href="#">Eannoy</a>
+              </h4>
+              <div class="detail-project">
+                <span>durasi : 3 bulan</span>
+                <br /><br />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sunt omnis modi nostrum</p>
+              </div>
+              <div class="framework">
+                <i class="fa-brands fa-js fa-2x" id="javascript"></i>
+                <i class="fa-brands fa-php fa-2x" id="php"></i>
+                <i class="fa-brands fa-java fa-2x" id="java"></i>
+                <i class="fa-brands fa-react fa-2x" id="reactsJS"></i>
+              </div>
+              <div class="btn-group">
+                <button>Edit</button>
+                <button>Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /list project -->
+  </body>
+</html>

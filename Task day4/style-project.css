@@ -1,0 +1,158 @@
+.my-project {
+  margin-top: 90px;
+  margin-bottom: 50px;
+}
+.container-project {
+  font-weight: bold;
+}
+.container-project h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: x-large;
+  margin: 20px;
+}
+#addProject {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+#addProject input {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.221);
+  padding: 10px;
+}
+#addProject textarea {
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.221);
+  padding: 30px;
+}
+.project-name {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.date {
+  display: flex;
+  padding: 10px;
+  gap: 70px;
+}
+.start-date {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.end-date {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.desc {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.wrapper-techno {
+  padding: 10px;
+}
+.techno {
+  display: flex;
+  gap: 100px;
+}
+
+.framework {
+  padding: 10px;
+}
+.up-img {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.input-file {
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.221);
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.input-file span {
+  background-color: #e4e4e4;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+}
+.input-file i {
+  font-size: x-large;
+  margin: 10px;
+}
+.btn-submit {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+#addProject button {
+  margin-top: 20px;
+  border-radius: 20px;
+  width: fit-content;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 6px 20px;
+  cursor: pointer;
+}
+#addProject button:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+.wrapper-list-project {
+  background-color: rgb(230, 230, 230);
+  padding: 20px;
+}
+.list-project {
+  padding: 30px;
+}
+.list-project h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.wrapper-list {
+  display: flex;
+  justify-content: center;
+}
+.list1 {
+  background-color: white;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px;
+}
+.project-img img {
+  width: 300px;
+  border-radius: 5px;
+}
+.project-content a {
+  color: black;
+  text-decoration: none;
+}
+.framework i {
+  padding: 5px;
+}
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-group button {
+  border-radius: 5px;
+  width: fit-content;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 1px 55px;
+  cursor: pointer;
+}
