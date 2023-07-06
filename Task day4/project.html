@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="style-project.css" />
-    <link rel="icon" href="images/dw.png" ” />
+    <link rel="icon" href="images/dw.png" />
     <title>Task Day4</title>
   </head>
   <body>
@@ -30,57 +30,59 @@
       <!-- form project-->
       <div class="container-project">
         <h2>add my project</h2>
-        <form id="addProject">
+        <form onsubmit="addProject(event)">
           <div class="project-name">
-            <label for="">Project Name</label>
-            <input type="text" />
+            <label for="input-project-name">Project Name</label>
+            <input type="text" id="input-project-name" />
           </div>
           <div class="date">
             <div class="start-date">
-              <label for="">Start Date</label>
-              <input type="date" />
+              <label for="input-start-date">Start Date</label>
+              <input type="date" id="input-start-date" />
             </div>
             <div class="end-date">
-              <label for="">End Date</label>
-              <input type="date" />
+              <label for="input-end-date">End Date</label>
+              <input type="date" id="input-end-date" />
             </div>
           </div>
           <div class="desc">
-            <label for="">Description</label>
-            <textarea></textarea>
+            <label for="input-description">Description</label>
+            <textarea id="input-description"></textarea>
           </div>
           <div class="wrapper-techno">
             <label for="">Technologies</label>
             <div class="techno">
               <div class="techno-left">
                 <div class="framework">
-                  <input type="checkbox" />
-                  <label for="">Node Js</label>
+                  <input type="checkbox" id="input-nodejs" class="input-multichecked" />
+                  <label for="input-nodejs">Node Js</label>
                 </div>
                 <div class="framework">
-                  <input type="checkbox" />
-                  <label for="">React Js</label>
+                  <input type="checkbox" id="input-reactjs" class="input-multichecked" />
+                  <label for="input-reactjs">React Js</label>
                 </div>
               </div>
               <div class="techno-right">
                 <div class="framework">
-                  <input type="checkbox" />
-                  <label for="">Next Js</label>
+                  <input type="checkbox" id="input-nextjs" class="input-multichecked" />
+                  <label for="input-nextjs">Next Js</label>
                 </div>
                 <div class="framework">
-                  <input type="checkbox" />
-                  <label for="">TypoScript</label>
+                  <input type="checkbox" id="input-typoscript" class="input-multichecked" />
+                  <label for="input-typoscript">TypoScript</label>
                 </div>
               </div>
             </div>
           </div>
           <div class="up-img">
-            <label for="input-file">Upload Image</label>
-            <label for="input-file" class="input-file">
-              <span>choose</span>
-              <input type="file" id="input-file" hidden />
-              <i class="fa-sharp fa-solid fa-file-import"></i>
-            </label>
+            <label>Upload Image</label>
+            <div class="input-blog-image-group">
+              <label for="input-blog-image">
+                <p>Choose</p>
+                <i class="fa-sharp fa-solid fa-file-import"></i>
+              </label>
+              <input type="file" id="input-blog-image" hidden />
+            </div>
           </div>
           <div class="btn-submit">
             <button>Submit</button>
@@ -94,85 +96,13 @@
     <div class="wrapper-list-project">
       <div class="list-project">
         <h2>my project</h2>
-        <div class="wrapper-list">
-          <div class="list1">
-            <div class="project-img">
-              <img src="images/code.jpg" alt="" />
-            </div>
-            <div class="project-content">
-              <h4>
-                <a href="#">Eannoy</a>
-              </h4>
-              <div class="detail-project">
-                <span>durasi : 3 bulan</span>
-                <br /><br />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sunt omnis modi nostrum</p>
-              </div>
-              <div class="framework">
-                <i class="fa-brands fa-js fa-2x" id="javascript"></i>
-                <i class="fa-brands fa-php fa-2x" id="php"></i>
-                <i class="fa-brands fa-java fa-2x" id="java"></i>
-                <i class="fa-brands fa-react fa-2x" id="reactsJS"></i>
-              </div>
-              <div class="btn-group">
-                <button>Edit</button>
-                <button>Delete</button>
-              </div>
-            </div>
-          </div>
-          <div class="list1">
-            <div class="project-img">
-              <img src="images/code.jpg" alt="" />
-            </div>
-            <div class="project-content">
-              <h4>
-                <a href="#">Eannoy</a>
-              </h4>
-              <div class="detail-project">
-                <span>durasi : 3 bulan</span>
-                <br /><br />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sunt omnis modi nostrum</p>
-              </div>
-              <div class="framework">
-                <i class="fa-brands fa-js fa-2x" id="javascript"></i>
-                <i class="fa-brands fa-php fa-2x" id="php"></i>
-                <i class="fa-brands fa-java fa-2x" id="java"></i>
-                <i class="fa-brands fa-react fa-2x" id="reactsJS"></i>
-              </div>
-              <div class="btn-group">
-                <button>Edit</button>
-                <button>Delete</button>
-              </div>
-            </div>
-          </div>
-          <div class="list1">
-            <div class="project-img">
-              <img src="images/code.jpg" alt="" />
-            </div>
-            <div class="project-content">
-              <h4>
-                <a href="#">Eannoy</a>
-              </h4>
-              <div class="detail-project">
-                <span>durasi : 3 bulan</span>
-                <br /><br />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sunt omnis modi nostrum</p>
-              </div>
-              <div class="framework">
-                <i class="fa-brands fa-js fa-2x" id="javascript"></i>
-                <i class="fa-brands fa-php fa-2x" id="php"></i>
-                <i class="fa-brands fa-java fa-2x" id="java"></i>
-                <i class="fa-brands fa-react fa-2x" id="reactsJS"></i>
-              </div>
-              <div class="btn-group">
-                <button>Edit</button>
-                <button>Delete</button>
-              </div>
-            </div>
-          </div>
+        <div id="contents-project" class="wrapper-list">
+          <!--dynamic content would be here -->
         </div>
       </div>
     </div>
     <!-- /list project -->
+
+    <script src="js/project.js"></script>
   </body>
 </html>

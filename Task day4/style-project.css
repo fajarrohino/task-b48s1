@@ -12,19 +12,19 @@
   font-size: x-large;
   margin: 20px;
 }
-#addProject {
+form {
   margin: auto;
   display: flex;
   flex-direction: column;
   width: 70%;
 }
-#addProject input {
+form input {
   border: none;
   border-radius: 6px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.221);
   padding: 10px;
 }
-#addProject textarea {
+form textarea {
   border: none;
   border-radius: 6px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.221);
@@ -94,7 +94,7 @@
   display: flex;
   justify-content: flex-end;
 }
-#addProject button {
+form button {
   margin-top: 20px;
   border-radius: 20px;
   width: fit-content;
@@ -155,4 +155,28 @@
   font-weight: bold;
   padding: 1px 55px;
   cursor: pointer;
+}
+
+.input-blog-image-group {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  background: white;
+  border: 1px solid #c4c4c4;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.input-blog-image-group label p {
+  font-size: 15px;
+  background-color: rgb(230, 230, 230);
+  padding: 10px;
+}
+.input-blog-image-group label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
