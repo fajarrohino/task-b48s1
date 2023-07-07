@@ -1,0 +1,66 @@
+.wrapper-container {
+  margin: 90px;
+  justify-content: center;
+}
+.container-title {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+}
+.container-pertama {
+  margin: 10px;
+  padding: 20px;
+  justify-content: center;
+}
+.wrapper-content {
+  display: flex;
+}
+.content-img img {
+  width: 450px;
+}
+.content-detail {
+  margin-left: 50px;
+}
+.title-duration p {
+  font-weight: bold;
+}
+.content-duration {
+  padding: 10px;
+}
+.content-duration-date {
+  display: flex;
+  gap: 25px;
+  margin: 10px;
+}
+.content-duration-date p {
+  padding: 5px;
+}
+.content-duration-clock {
+  display: flex;
+  gap: 25px;
+  margin: 10px;
+}
+.content-duration-clock p {
+  padding: 5px;
+}
+.title-techo p {
+  font-weight: bold;
+}
+.content-techo {
+  padding: 10px;
+  display: flex;
+  gap: 100px;
+}
+.framework {
+  display: flex;
+  padding: 10px;
+}
+.framework p {
+  margin-left: 20px;
+}
+
+.container-kedua {
+  margin: 10px;
+  padding: 20px;
+  text-align: justify;
+}
