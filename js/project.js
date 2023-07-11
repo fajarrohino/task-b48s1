@@ -101,7 +101,7 @@ function renderProject() {
                 ${dataProject[index].nodeJs ? "<i class='fa-brands fa-node fa-2x' id='nodejs'></i>" : ""}
                 ${dataProject[index].reactJs ? "<i class='fa-brands fa-react fa-2x' id='reactjs'></i>" : ""}
                 ${dataProject[index].nextJs ? "<i class='fa-solid fa-n fa-2x' id='nextjs'></i>" : ""}
-                ${dataProject[index].nodeJs ? "<i class='fa-solid fa-t fa-2x' id='typoscript'></i>" : ""}
+                ${dataProject[index].typoScript ? "<i class='fa-solid fa-t fa-2x' id='typoscript'></i>" : ""}
               </div>
               <div class="btn-group">
                 <button>Edit</button>

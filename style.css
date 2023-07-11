@@ -170,7 +170,9 @@ nav ul li a:hover {
   background-color: aqua;
 }
 .hamburger-container {
-  margin-top: 65px;
+  top: 72px;
+  width: 100%;
+  position: fixed;
   font-size: 20px;
   display: none;
   flex-direction: column;
@@ -178,7 +180,6 @@ nav ul li a:hover {
   background-color: white;
 }
 .hamburger-container a {
-  padding: 10px;
   width: 100%;
   color: black;
   text-align: center;
@@ -232,7 +233,7 @@ nav ul li a:hover {
 .form-container {
   display: flex;
   flex-direction: column;
-  width: 500px;
+  /* width: 500px; */
 }
 .form-container div {
   display: flex;
@@ -274,4 +275,16 @@ div select {
   display: flex;
   align-items: flex-end;
 }
+/* responsive */
+@media only screen and (max-width: 500px) {
+  .form-container {
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 501px) {
+  .form-container {
+    width: 500px;
+  }
+}
+
 /* /contact-form */

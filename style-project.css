@@ -38,7 +38,6 @@ form textarea {
 .date {
   display: flex;
   padding: 10px;
-  gap: 70px;
 }
 .start-date {
   display: flex;
@@ -60,7 +59,6 @@ form textarea {
 }
 .techno {
   display: flex;
-  gap: 100px;
 }
 
 .framework {
@@ -108,21 +106,21 @@ form button {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
+/* list project */
 .wrapper-list-project {
   background-color: rgb(230, 230, 230);
   padding: 20px;
-}
-.list-project {
-  padding: 30px;
 }
 .list-project h2 {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  padding: 30px;
 }
 .wrapper-list {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-content: center;
 }
 .list1 {
   background-color: white;
@@ -140,12 +138,14 @@ form button {
   color: black;
   text-decoration: none;
 }
+.detail-project p {
+  text-align: justify;
+}
 .framework i {
   padding: 5px;
 }
 .btn-group {
   display: flex;
-  justify-content: space-between;
 }
 .btn-group button {
   border-radius: 5px;
@@ -179,4 +179,79 @@ form button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* responsive */
+@media only screen and (max-width: 600px) {
+  .date {
+    flex-direction: column;
+  }
+  .start-date {
+    padding-bottom: 20px;
+  }
+  .techno {
+    flex-direction: column;
+  }
+  .wrapper-list {
+    grid-template-columns: auto auto;
+    padding-left: 30px;
+  }
+  .list1 {
+    width: 200px;
+  }
+  .project-img img {
+    width: 200px;
+  }
+  .btn-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .btn-group button {
+    padding: 0px 20px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .date {
+    gap: 70px;
+  }
+  .techno {
+    gap: 100px;
+  }
+  .btn-group {
+    justify-content: space-between;
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .wrapper-list {
+    grid-template-columns: auto auto;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .list1 {
+    width: 200px;
+  }
+  .project-img img {
+    width: 200px;
+  }
+  .btn-group {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .btn-group button {
+    padding: 0px 20px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .wrapper-list {
+    grid-template-columns: auto auto;
+    padding-left: 30px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .wrapper-list {
+    grid-template-columns: auto;
+    padding-left: 15px;
+  }
 }
