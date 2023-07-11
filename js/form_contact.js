@@ -59,3 +59,9 @@ function submitData(event) {
   a.href = `mailto:${emailReceiver}?subject=${subject}&body= Hy my name is ${name}, \n ${message} \n please contact me ${phone}`;
   a.click();
 }
+
+// let objectHp ={
+//   nama : "ip",
+//   ram: "8gb"
+// }
+// let arrayHp =['ip', 'xome', '8gb', '4gb']

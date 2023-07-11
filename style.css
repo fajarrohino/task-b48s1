@@ -19,10 +19,16 @@ body {
 }
 .about {
   width: 500px;
+  display: flex;
+  flex-direction: column;
 }
 .about p {
   text-align: justify;
   padding-bottom: 30px;
+}
+.contact {
+  display: flex;
+  align-items: center;
 }
 .contact button {
   text-decoration: none;
@@ -52,8 +58,9 @@ body {
 i {
   color: black;
 }
-.card {
-  width: 300px;
+.wrapper-card {
+  /* background-color: aqua; */
+  /* width: 300px; */
   box-shadow: 0px 5px 8px;
   border-radius: 10px;
   text-align: center;
@@ -65,6 +72,43 @@ i {
 }
 .title-card {
   padding-bottom: 20px;
+}
+@media only screen and (max-width: 920px) {
+  .container {
+    margin-top: 90px;
+    margin-left: 30px;
+  }
+  .conten {
+    flex-direction: column;
+  }
+  .about {
+    width: auto;
+  }
+  .wrapper-card {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .container {
+    padding: 20px;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .container {
+    padding: 20px;
+  }
+  .contact {
+    flex-direction: column;
+  }
+  .sosmed ul {
+    flex-direction: column;
+  }
+  .card img {
+    width: 200px;
+  }
+  .wrapper-card {
+    width: 200px;
+  }
 }
 /* /container-profil */
 
@@ -95,25 +139,80 @@ ul li a {
 nav ul {
   display: flex;
   align-items: center;
-  padding-left: 75px;
 }
 nav ul li a:hover {
   color: black;
   font-weight: bold;
 }
-header button {
+.btn button {
   background-color: black;
   color: white;
   padding: 7px 10px;
   border: none;
   border-radius: 15px;
 }
-header button:hover {
+.btn button:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
 .btn {
   margin-right: 95px;
+}
+.nav-right {
+  margin-right: 95px;
+}
+.nav-right button {
+  background-color: white;
+  border: none;
+}
+/* nav hamburger */
+.nav-active {
+  background-color: aqua;
+}
+.hamburger-container {
+  margin-top: 65px;
+  font-size: 20px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+.hamburger-container a {
+  padding: 10px;
+  width: 100%;
+  color: black;
+  text-align: center;
+  border: 2px solid lightgray;
+  text-decoration: none;
+}
+/* responsive */
+@media only screen and (max-width: 600px) {
+  .collapse-item {
+    display: none;
+  }
+  #hamburger-btn {
+    margin-right: 70px;
+  }
+}
+@media only screen and (min-width: 601px) {
+  #hamburger-btn {
+    display: none;
+  }
+}
+@media only screen and (min-width: 601px) {
+  nav ul {
+    padding-left: 75px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  nav ul {
+    padding-left: 30px;
+  }
+}
+@media only screen and (max-width: 920px) {
+  nav ul {
+    padding-left: 30px;
+  }
 }
 /* /navbar */
 

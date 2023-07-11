@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="images/dw.png" />
-    <title>Task Day5</title>
+    <title>Task Day6</title>
   </head>
   <body>
     <!-- navbar -->
@@ -14,14 +14,24 @@
       <nav>
         <ul>
           <li>
-            <a href="index.html"><img src="images/dw.png" alt="" /></a>
+            <a href="index.html"><img src="images/dw.png" class="logoDW" alt="" /></a>
           </li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="project.html">My Project</a></li>
+          <li class="collapse-item"><a href="index.html">Home</a></li>
+          <li class="collapse-item"><a href="project.html">My Project</a></li>
         </ul>
       </nav>
-      <a class="btn" href="contact.html"><button>Contact Me</button></a>
+      <a class="btn collapse-item" href="contact.html"><button>Contact Me</button> </a>
+      <div class="nav-right" id="hamburger-btn">
+        <button onclick="openHamburger()">
+          <i class="fa-solid fa-bars fa-2x"></i>
+        </button>
+      </div>
     </header>
+    <div class="hamburger-container" id="hamburger-container">
+      <a href="index.html" class="nav-active">Home</a>
+      <a href="project.html">My Project</a>
+      <a href="contact.html">Contact Me</a>
+    </div>
     <!-- /navbar -->
 
     <!-- conten about me -->
@@ -56,14 +66,19 @@
           </div>
         </div>
         <div class="card">
-          <img src="images/man.jpg" alt="" />
-          <div class="title-card">
-            <h4>Fajar Rohino</h4>
-            <h4>E-Annoy</h4>
-            <p>Fullstack Development</p>
+          <div class="wrapper-card">
+            <div class="card-img">
+              <img src="images/man.jpg" alt="" />
+            </div>
+            <div class="title-card">
+              <h4>Fajar Rohino</h4>
+              <h4>E-Annoy</h4>
+              <p>Fullstack Development</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="js/nav.js"></script>
   </body>
 </html>
