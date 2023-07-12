@@ -63,8 +63,11 @@
   .title-test h2 {
     font-size: 20px;
   }
+  .card-body-test {
+    padding: 10px;
+  }
   .card-body-test p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .wrapper-test {
     padding: 10px;
@@ -90,8 +93,11 @@
   .title-test h2 {
     font-size: 15px;
   }
+  .card-body-test {
+    padding: 10px;
+  }
   .card-body-test p {
-    font-size: 10px;
+    font-size: 15px;
   }
   .wrapper-test {
     padding: 7px;
