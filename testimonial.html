@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="test.css" />
     <link rel="icon" href="images/dw.png" />
-    <title>Contact Me</title>
+    <title>Task Day7</title>
   </head>
   <body>
     <!-- navbar -->
@@ -29,48 +30,26 @@
       </div>
     </header>
     <div class="hamburger-container" id="hamburger-container">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="nav-active">Home</a>
       <a href="project.html">My Project</a>
-      <a href="contact.html" class="nav-active">Contact Me</a>
+      <a href="contact.html">Contact Me</a>
       <a href="testimonial.html">Testimonials</a>
     </div>
     <!-- /navbar -->
 
-    <!-- contact -->
-    <div class="contact-container">
-      <h3>get in touch</h3>
-      <form class="form-container">
-        <div>
-          <label>Name</label>
-          <input id="input-name" />
+    <!-- testimonials-->
+    <div class="container-test">
+      <div class="wrapper-test">
+        <div class="title-test">
+          <h2>my testimonials</h2>
         </div>
-        <div>
-          <label>Email</label>
-          <input id="input-email" />
+        <div class="content-test" id="testimonial">
+          <!-- dynamic -->
         </div>
-        <div>
-          <label>Phone Namber</label>
-          <input id="input-phone" />
-        </div>
-        <div>
-          <label>Subject</label>
-          <select id="input-subject">
-            <option hidden></option>
-            <option value="Frontend Developer">Frontend Developer</option>
-            <option value="Backend Developer">Backend Developer</option>
-            <option value="Fullstack Developer">Fullstack Developer</option>
-          </select>
-        </div>
-        <div>
-          <label>Your Message</label>
-          <textarea id="input-message"></textarea>
-        </div>
-        <div class="btn-position">
-          <button type="submit" onclick="submitData(event)">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
-    <script src="js/form_contact.js"></script>
+    <!-- /testimonials-->
     <script src="js/nav.js"></script>
+    <script src="js/testomonial.js"></script>
   </body>
 </html>
