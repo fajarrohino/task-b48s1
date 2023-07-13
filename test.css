@@ -22,10 +22,12 @@
   text-transform: capitalize;
 }
 .btn-rating-test {
-  gap: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 40px;
 }
 .btn-rating-test button {
-  padding: 2px 15px;
+  padding: 2px 20px;
   background-color: black;
   color: white;
   font-size: 15px;
@@ -64,11 +66,25 @@
     grid-template-columns: auto auto;
   }
 }
+@media only screen and (max-width: 870px) {
+  .btn-rating-test {
+    grid-template-columns: auto auto auto auto;
+    gap: 30px;
+  }
+  .item4 {
+    grid-column: 1/2;
+  }
+}
+
 @media only screen and (max-width: 750px) {
   .content-test {
     grid-template-columns: auto;
   }
+  .btn-rating-test {
+    gap: 10px;
+  }
 }
+
 @media only screen and (max-width: 500px) {
   .card-title-test img {
     width: 250px;
@@ -85,6 +101,13 @@
   .title-test h2 {
     font-size: 20px;
   }
+  .btn-rating-test {
+    grid-template-columns: auto auto;
+    gap: 20px;
+  }
+  .item4 {
+    grid-column: 2/2;
+  }
   .card-body-test {
     padding: 10px;
   }
@@ -99,6 +122,7 @@
     padding: 8px;
   }
 }
+
 @media only screen and (max-width: 380px) {
   .card-title-test img {
     width: 250px;
