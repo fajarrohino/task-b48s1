@@ -1,5 +1,5 @@
 .container-test {
-  margin: 90px;
+  margin: 80px;
   padding: 10px;
 }
 .wrapper-test {
@@ -8,10 +8,30 @@
 .title-test {
   display: flex;
   justify-content: center;
-  padding: 30px;
+  padding: 10px;
 }
 .title-test h2 {
   text-transform: capitalize;
+}
+.rating-test {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  text-transform: capitalize;
+}
+.btn-rating-test {
+  gap: 20px;
+}
+.btn-rating-test button {
+  padding: 2px 15px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+}
+.btn-rating-test i {
+  color: white;
 }
 .content-test {
   display: grid;
@@ -36,6 +56,8 @@
 .card-pengisi {
   display: flex;
   justify-content: end;
+  gap: 5px;
+  align-items: center;
 }
 @media only screen and (max-width: 1050px) {
   .content-test {
