@@ -8,12 +8,12 @@ body {
   background-color: lightgray;
 }
 /* container-profil */
-.container {
+.container-me {
   background-color: white;
   margin: 90px;
   padding: 80px;
 }
-.conten {
+.conten-me {
   display: flex;
   gap: 50px;
 }
@@ -65,7 +65,7 @@ i {
   border-radius: 10px;
   text-align: center;
 }
-.card img {
+.card-me img {
   width: 300px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -74,11 +74,11 @@ i {
   padding-bottom: 20px;
 }
 @media only screen and (max-width: 920px) {
-  .container {
+  .container-me {
     margin-top: 90px;
     margin-left: 30px;
   }
-  .conten {
+  .conten-me {
     flex-direction: column;
   }
   .about {
@@ -89,12 +89,12 @@ i {
   }
 }
 @media only screen and (max-width: 550px) {
-  .container {
+  .container-me {
     padding: 20px;
   }
 }
 @media only screen and (max-width: 450px) {
-  .container {
+  .container-me {
     padding: 20px;
   }
   .contact {
@@ -103,7 +103,7 @@ i {
   .sosmed ul {
     flex-direction: column;
   }
-  .card img {
+  .card-me img {
     width: 200px;
   }
   .wrapper-card {
@@ -136,32 +136,32 @@ ul li a {
   text-decoration: none;
   color: black;
 }
-nav ul {
+.navi ul {
   display: flex;
   align-items: center;
 }
-nav ul li a:hover {
+.navi ul li a:hover {
   color: black;
   font-weight: bold;
 }
-.btn button {
+.bton button {
   background-color: black;
   color: white;
   padding: 7px 10px;
   border: none;
   border-radius: 15px;
 }
-.btn button:hover {
+.bton button:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
-.btn {
+.bton {
   margin-right: 95px;
 }
-.nav-right {
+.navi-right {
   margin-right: 95px;
 }
-.nav-right button {
+.navi-right button {
   background-color: white;
   border: none;
 }
@@ -271,7 +271,7 @@ div select {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
-.btn-position {
+.bton-position {
   display: flex;
   align-items: flex-end;
 }
@@ -286,5 +286,4 @@ div select {
     width: 500px;
   }
 }
-
 /* /contact-form */

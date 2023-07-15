@@ -1,4 +1,4 @@
-.my-project {
+.container-form {
   margin-top: 90px;
   margin-bottom: 50px;
 }
@@ -107,6 +107,9 @@ form button {
   transform: translateY(-1px);
 }
 /* list project */
+.container {
+  background-color: lightgray;
+}
 .wrapper-list-project {
   background-color: rgb(230, 230, 230);
   padding: 20px;
@@ -131,7 +134,9 @@ form button {
   box-shadow: 0px 3px 10px;
 }
 .project-img img {
-  width: 300px;
+  width: 280px;
+  height: 200px;
+  object-fit: cover;
   border-radius: 5px;
 }
 .project-content a {
@@ -153,7 +158,7 @@ form button {
   background-color: black;
   color: white;
   font-weight: bold;
-  padding: 1px 55px;
+  padding: 1px 48px;
   cursor: pointer;
 }
 

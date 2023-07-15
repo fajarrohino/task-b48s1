@@ -1,5 +1,3 @@
-// console.log("hallo eannoy");
-
 // const xhr = new XMLHttpRequest(); //variabel untuk apa ini? -> object can be used to exchange data with a web server
 
 // // CRUD
@@ -16,7 +14,6 @@
 const promise = new Promise((resolve, reject) => {
   const xhttp = new XMLHttpRequest();
 
-  // CURD
   xhttp.open("GET", "https://api.npoint.io/07c1d6487059fd250aa1", true);
   xhttp.onload = function () {
     if (xhttp.status === 200) {
