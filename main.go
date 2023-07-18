@@ -16,5 +16,10 @@ func main() {
             "name" : "fajar rohino",
         })
     })
+    e.GET("/contact", func(c echo.Context) error {
+        return c.JSON(http.StatusOK, map[string]int{
+            "Nomor" : 12344,
+        })
+    })
     e.Logger.Fatal(e.Start("localhost:5000"))
 }
