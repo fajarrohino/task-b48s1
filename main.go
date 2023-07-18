@@ -1,6 +1,15 @@
 package main
 
-import "fmt"
-func main(){
-	fmt.Println("Hmmmm...", "mau apa lu!")
+import (
+	"net/http"
+
+	"github.com/labstack/echo/v4"
+)
+
+func main() {
+    e := echo.New()
+    e.GET("/", func(c echo.Context) error {
+        return c.String(http.StatusOK, "hello my name is fajar rohino")
+    })
+    e.Logger.Fatal(e.Start(":5000"))
 }
