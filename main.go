@@ -9,7 +9,12 @@ import (
 func main() {
     e := echo.New()
     e.GET("/", func(c echo.Context) error {
-        return c.String(http.StatusOK, "hello my name is fajar rohino")
+        return c.JSON(http.StatusOK, "hello my name is fajar rohino")
     })
-    e.Logger.Fatal(e.Start(":5000"))
+    e.GET("/about", func(c echo.Context) error {
+        return c.JSON(http.StatusOK, map[string]string {
+            "name" : "fajar rohino",
+        })
+    })
+    e.Logger.Fatal(e.Start("localhost:5000"))
 }
