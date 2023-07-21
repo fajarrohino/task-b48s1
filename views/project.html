@@ -21,7 +21,7 @@
           <li>
             <a href="index "><img src="/aset/images/dw.png" class="logoDW" alt="" /></a>
           </li>
-          <li class="collapse-item"><a href="index ">Home</a></li>
+          <li class="collapse-item"><a href="home ">Home</a></li>
           <li class="collapse-item"><a href="]project ">Add Project</a></li>
           <li class="collapse-item"><a href="testimonial ">Testimonials</a></li>
         </ul>
@@ -41,46 +41,47 @@
     </div>
     <!-- /navbar -->
 
+    <!-- onsubmit="addProject(event)" -->
     <div class="container-form">
-      <form onsubmit="addProject(event)">
+      <form action="/project-add" method="post">
         <h3 class="text-center fw-bold">ADD MY PROJECT</h3>
         <div class="mb-3">
           <label class="form-label">Project Name</label>
-          <input type="text" class="form-control" id="input-project-name" />
+          <input type="text" class="form-control" id="input-project-name" name="input-project-name" />
         </div>
         <div class="row g-3">
           <div class="col">
             <label class="form-label">Start Date</label>
-            <input type="date" class="form-control" id="input-start-date" />
+            <input type="date" class="form-control" id="input-start-date" name="input-start-date" />
           </div>
           <div class="col">
             <label class="form-label">End Date</label>
-            <input type="date" class="form-control" id="input-end-date" />
+            <input type="date" class="form-control" id="input-end-date" name="input-end-date" />
           </div>
           <div class="mb-3">
             <label class="form-label">Description</label>
-            <textarea class="form-control" id="input-description" rows="3"></textarea>
+            <textarea class="form-control" id="input-description" rows="3" name="input-description"></textarea>
           </div>
           <div class="wrapper-techno">
             <label for="">Technologies</label>
             <div class="techno">
               <div class="techno-left">
                 <div class="framework">
-                  <input type="checkbox" id="input-nodejs" class="form-check-input input-multichecked" />
+                  <input type="checkbox" id="input-nodejs" class="form-check-input input-multichecked" name="input-nodejs" />
                   <label class="form-check-label" for="input-nodejs">Node Js</label>
                 </div>
                 <div class="framework">
-                  <input type="checkbox" id="input-reactjs" class="form-check-input input-multichecked" />
+                  <input type="checkbox" id="input-reactjs" class="form-check-input input-multichecked" name="input-reactjs" />
                   <label class="form-check-label" for="input-reactjs">React Js</label>
                 </div>
               </div>
               <div class="techno-right">
                 <div class="framework">
-                  <input type="checkbox" id="input-nextjs" class="form-check-input input-multichecked" />
+                  <input type="checkbox" id="input-nextjs" class="form-check-input input-multichecked" name="input-nextjs" />
                   <label class="form-check-label" for="input-nextjs">Next Js</label>
                 </div>
                 <div class="framework">
-                  <input type="checkbox" id="input-typoscript" class="form-check-input input-multichecked" />
+                  <input type="checkbox" id="input-typoscript" class="form-check-input input-multichecked" name="input-typoscript" />
                   <label class="form-check-label" for="input-typoscript">TypoScript</label>
                 </div>
               </div>
@@ -91,7 +92,7 @@
             <input class="form-control" type="file" id="input-blog-image"">
           </div>
           <div class="btn-submit">
-            <button>Submit</button>
+            <button type="submit">Submit</button>
           </div>
         </div>
       </form>
