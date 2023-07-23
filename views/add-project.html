@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="stylesheet" href="/aset/css/style.css" />
     <link rel="stylesheet" href="/aset/css/style-project.css" />
-    <link rel="icon" href="/images/dw.png" />
+    <link rel="icon" href="/aset/images/dw.png" />
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
 
-    <title>Task Day10</title>
+    <title>Add Project</title>
   </head>
   <body>
     <!-- navbar -->
@@ -19,14 +19,14 @@
       <div class="navi">
         <ul>
           <li>
-            <a href="index "><img src="/aset/images/dw.png" class="logoDW" alt="" /></a>
+            <a href="/"><img src="/aset/images/dw.png" class="logoDW" alt="" /></a>
           </li>
-          <li class="collapse-item"><a href="home ">Home</a></li>
-          <li class="collapse-item"><a href="]project ">Add Project</a></li>
-          <li class="collapse-item"><a href="testimonial ">Testimonials</a></li>
+          <li class="collapse-item"><a href="/">Home</a></li>
+          <li class="collapse-item"><a href="form-project">Add Project</a></li>
+          <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
         </ul>
       </div>
-      <a class="bton collapse-item" href="contact "><button>Contact Me</button> </a>
+      <a class="bton collapse-item" href="contact"><button>Contact Me</button> </a>
       <div class="navi-right" id="hamburger-btn">
         <button onclick="openHamburger()">
           <i class="fa-solid fa-bars fa-2x"></i>
@@ -34,16 +34,16 @@
       </div>
     </header>
     <div class="hamburger-container" id="hamburger-container">
-      <a href="index ">Home</a>
-      <a href="project " class="nav-active">Add Project</a>
-      <a href="contact ">Contact Me</a>
-      <a href="testimonial ">Testimonials</a>
+      <a href="/" class="nav-active">Home</a>
+      <a href="form-project">Add Project</a>
+      <a href="contact">Contact Me</a>
+      <a href="testimonial">Testimonials</a>
     </div>
     <!-- /navbar -->
 
     <!-- onsubmit="addProject(event)" -->
     <div class="container-form">
-      <form action="/project-add" method="post">
+      <form action="/" method="post">
         <h3 class="text-center fw-bold">ADD MY PROJECT</h3>
         <div class="mb-3">
           <label class="form-label">Project Name</label>
@@ -67,21 +67,21 @@
             <div class="techno">
               <div class="techno-left">
                 <div class="framework">
-                  <input type="checkbox" id="input-nodejs" class="form-check-input input-multichecked" name="input-nodejs" />
+                  <input type="checkbox" id="input-nodejs" class="form-check-input input-multichecked" name="input-nodejs" value="nodeJs" />
                   <label class="form-check-label" for="input-nodejs">Node Js</label>
                 </div>
                 <div class="framework">
-                  <input type="checkbox" id="input-reactjs" class="form-check-input input-multichecked" name="input-reactjs" />
+                  <input type="checkbox" id="input-reactjs" class="form-check-input input-multichecked" name="input-reactjs" value="reactJs" />
                   <label class="form-check-label" for="input-reactjs">React Js</label>
                 </div>
               </div>
               <div class="techno-right">
                 <div class="framework">
-                  <input type="checkbox" id="input-nextjs" class="form-check-input input-multichecked" name="input-nextjs" />
+                  <input type="checkbox" id="input-nextjs" class="form-check-input input-multichecked" name="input-nextjs" value="nextJs" />
                   <label class="form-check-label" for="input-nextjs">Next Js</label>
                 </div>
                 <div class="framework">
-                  <input type="checkbox" id="input-typoscript" class="form-check-input input-multichecked" name="input-typoscript" />
+                  <input type="checkbox" id="input-typoscript" class="form-check-input input-multichecked" name="input-typoscript" value="typoscript" />
                   <label class="form-check-label" for="input-typoscript">TypoScript</label>
                 </div>
               </div>
@@ -89,7 +89,7 @@
           </div>
           <div class="mb-3">
             <label for="formFile" class="form-label">Upload Image</label>
-            <input class="form-control" type="file" id="input-blog-image"">
+            <input class="form-control" type="file" id="input-blog-image" name="input-img" />
           </div>
           <div class="btn-submit">
             <button type="submit">Submit</button>

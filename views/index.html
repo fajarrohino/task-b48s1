@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="/aset/fontawesome/css/all.css" />
     <link rel="stylesheet" href="/aset/css/style.css" />
     <link rel="stylesheet" href="/aset/css/style-project.css" />
-    <link rel="icon" href="/images/dw.png" />
-    <title>Task Day11</title>
+    <link rel="icon" href="/aset/images/dw.png" />
+    <title>Task Day12</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
   </head>
@@ -17,10 +17,10 @@
       <div class="navi">
         <ul>
           <li>
-            <a href="index"><img src="/aset/images/dw.png" class="logoDW" alt="" /></a>
+            <a href="/"><img src="/aset/images/dw.png" class="logoDW" alt="" /></a>
           </li>
-          <li class="collapse-item"><a href="home">Home</a></li>
-          <li class="collapse-item"><a href="project">Add Project</a></li>
+          <li class="collapse-item"><a href="/">Home</a></li>
+          <li class="collapse-item"><a href="form-project">Add Project</a></li>
           <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
         </ul>
       </div>
@@ -32,10 +32,10 @@
       </div>
     </header>
     <div class="hamburger-container" id="hamburger-container">
-      <a href="index " class="nav-active">Home</a>
-      <a href="project ">Add Project</a>
-      <a href="contact ">Contact Me</a>
-      <a href="testimonial ">Testimonials</a>
+      <a href="/" class="nav-active">Home</a>
+      <a href="form-project">Add Project</a>
+      <a href="contact">Contact Me</a>
+      <a href="testimonial">Testimonials</a>
     </div>
     <!-- /navbar -->
 
@@ -91,106 +91,36 @@
         <div class="list-project">
           <h2>my project</h2>
           <div id="contents-project" class="wrapper-list">
+            {{range $index, $data:=.Projects}}
             <div class="list1">
               <div class="project-img">
-                <img src="/aset/images/man.jpg" alt="" />
+                <img src="/aset/images/{{$data.Image}}" alt="" />
               </div>
               <div class="project-content">
                 <h4>
-                  <a href="project-detail.html">asd</a>
+                  <a href="project-detail/{{$index}}">{{$data.ProjectName}}</a>
                 </h4>
                 <div class="detail-project">
-                  <span>durasi : 1 month</span>
+                  <span>durasi : {{$data.Duration}}</span>
                   <br /><br />
-                  <p>${dataProject[index].description}</p>
+                  <p>{{$data.Description}}</p>
                 </div>
                 <div class="framework">
-                  <i class="fa-brands fa-node fa-2x" id="nodejs"></i>
-                  <i class="fa-brands fa-react fa-2x" id="reactjs"></i>
-                  <i class="fa-solid fa-n fa-2x" id="nextjs"></i>
-                  <i class="fa-solid fa-t fa-2x" id="typoscript"></i>
+                  {{if $data.NodeJs}}
+                  <i class="fa-brands fa-node fa-2x" id="nodejs"></i>{{end}} {{if $data.ReactJs}} <i class="fa-brands fa-react fa-2x" id="reactjs"></i>{{end}} {{if $data.NextJs}} <i class="fa-solid fa-n fa-2x" id="nextjs"></i>{{end}} {{if
+                  $data.TypoScript}} <i class="fa-solid fa-t fa-2x" id="typoscript"></i>{{end}}
                 </div>
                 <div class="btn-group">
-                  <button>Edit</button>
-                  <button>Delete</button>
+                  <form action="/project-edit/{{$index}}" method="get">
+                    <button>Edit</button>
+                  </form>
+                  <form action="/project-delete/{{$index}}" method="post">
+                    <button>Delete</button>
+                  </form>
                 </div>
               </div>
             </div>
-            <div class="list1">
-              <div class="project-img">
-                <img src="/aset/images/man.jpg" alt="" />
-              </div>
-              <div class="project-content">
-                <h4>
-                  <a href="project-detail.html">asd</a>
-                </h4>
-                <div class="detail-project">
-                  <span>durasi : 1 month</span>
-                  <br /><br />
-                  <p>${dataProject[index].description}</p>
-                </div>
-                <div class="framework">
-                  <i class="fa-brands fa-node fa-2x" id="nodejs"></i>
-                  <i class="fa-brands fa-react fa-2x" id="reactjs"></i>
-                  <i class="fa-solid fa-n fa-2x" id="nextjs"></i>
-                  <i class="fa-solid fa-t fa-2x" id="typoscript"></i>
-                </div>
-                <div class="btn-group">
-                  <button>Edit</button>
-                  <button>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div class="list1">
-              <div class="project-img">
-                <img src="/aset/images/man.jpg" alt="" />
-              </div>
-              <div class="project-content">
-                <h4>
-                  <a href="project-detail.html">asd</a>
-                </h4>
-                <div class="detail-project">
-                  <span>durasi : 1 month</span>
-                  <br /><br />
-                  <p>${dataProject[index].description}</p>
-                </div>
-                <div class="framework">
-                  <i class="fa-brands fa-node fa-2x" id="nodejs"></i>
-                  <i class="fa-brands fa-react fa-2x" id="reactjs"></i>
-                  <i class="fa-solid fa-n fa-2x" id="nextjs"></i>
-                  <i class="fa-solid fa-t fa-2x" id="typoscript"></i>
-                </div>
-                <div class="btn-group">
-                  <button>Edit</button>
-                  <button>Delete</button>
-                </div>
-              </div>
-            </div>
-            <div class="list1">
-              <div class="project-img">
-                <img src="/aset/images/man.jpg" alt="" />
-              </div>
-              <div class="project-content">
-                <h4>
-                  <a href="project-detail.html">asd</a>
-                </h4>
-                <div class="detail-project">
-                  <span>durasi : 1 month</span>
-                  <br /><br />
-                  <p>${dataProject[index].description}</p>
-                </div>
-                <div class="framework">
-                  <i class="fa-brands fa-node fa-2x" id="nodejs"></i>
-                  <i class="fa-brands fa-react fa-2x" id="reactjs"></i>
-                  <i class="fa-solid fa-n fa-2x" id="nextjs"></i>
-                  <i class="fa-solid fa-t fa-2x" id="typoscript"></i>
-                </div>
-                <div class="btn-group">
-                  <button>Edit</button>
-                  <button>Delete</button>
-                </div>
-              </div>
-            </div>
+            {{end}}
           </div>
         </div>
       </div>
