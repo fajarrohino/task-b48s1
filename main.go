@@ -23,7 +23,7 @@ type DataProject struct{
         NextJs          bool
         TypoScript      bool
 }
-
+// slice of struc ->mirip array of objec
 var Projects = []DataProject{
     // {
     //     ProjectName     :"Project 1",
@@ -90,9 +90,6 @@ func main() {
 // handlers
 func home(c echo.Context) error{
     tmpl, err := template.ParseFiles("views/index.html")
-    if err != nil {
-        return c.JSON(http.StatusInternalServerError,err.Error())
-    }
 
     // utk mengambil data di database
     Querys,errQuery:= connection.Conn.Query(context.Background(), "SELECT * FROM tb_project")
@@ -103,17 +100,23 @@ func home(c echo.Context) error{
     var project []DataProject
     for Querys.Next(){
         var each = DataProject{}
-        err:= Querys.Scan(&each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript)
+        err:= Querys.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript, &each.Duration)
+
         if err != nil {
             return c.JSON(http.StatusInternalServerError,err.Error())
         }
+
         project = append(project, each)
     }
-    // utk pemanggilan di html index
-    Projects:=map[string]interface{}{
-        "Projects" : Projects,
+     if err != nil {
+        return c.JSON(http.StatusInternalServerError,err.Error())
     }
-    return tmpl.Execute(c.Response(),Projects)
+    // utk pemanggilan di html index
+    myProject:=map[string]interface{}{
+        "Projects" : project,
+    }
+    // fmt.Println("ini data index", myProject)
+    return tmpl.Execute(c.Response(),myProject)
 }
 func formproject(c echo.Context) error  {
     tmpl, err := template.ParseFiles("views/add-project.html")
@@ -233,7 +236,7 @@ func submitEditProject(c echo.Context) error  {
                 NodeJs:         (nodejs=="nodeJs"),
                 ReactJs:        (reactjs=="reactJs"),
                 NextJs:         (nextjs=="nextJs"),
-                TypoScript:     (typoscript=="typosctipt"),
+                TypoScript:     (typoscript=="typoscript"),
             }
     Projects[id] = projectedit
     return c.Redirect(http.StatusMovedPermanently, "/")
@@ -284,7 +287,7 @@ func addproject(c echo.Context) error  {
                 NodeJs:         (nodejs=="nodeJs"),
                 ReactJs:        (reactjs=="reactJs"),
                 NextJs:         (nextjs=="nextJs"),
-                TypoScript:     (typoscript=="typosctipt"),
+                TypoScript:     (typoscript=="typoscript"),
     }
     Projects = append(Projects, newProject)
     return c.Redirect(http.StatusMovedPermanently, "/")
