@@ -1,6 +1,8 @@
 package main
 
 import (
+	"context"
+	"day10/connection"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -11,8 +13,8 @@ import (
 type DataProject struct{
 	    Id              int
         ProjectName     string
-        StartDate        string
-        EndDate         string
+        StartDate       time.Time
+        EndDate         time.Time
         Duration        string
         Description     string
         Image           string
@@ -23,46 +25,50 @@ type DataProject struct{
 }
 
 var Projects = []DataProject{
-    {
-        ProjectName     :"Project 1",
-        StartDate        :"14-05-2023",
-        EndDate         :"14-07-2023",
-        Duration        :"2 Month",
-        Description     :"Maap mata lumayan sakit",
-        Image           :"code.jpg",
-        NodeJs          :true,
-        ReactJs         :true,
-        NextJs          :true,
-        TypoScript      :true,
-    },
-    {
-        ProjectName     :"Project 2",
-        StartDate        :"15-06-2023",
-        EndDate         :"15-07-2023",
-        Duration        :"1 Month",
-        Description     :"Maap mata lumayan sakit",
-        Image           :"code1.jpg",
-        NodeJs          :true,
-        ReactJs         :true,
-        NextJs          :true,
-        TypoScript      :true,
-    },
-    {
-        ProjectName     :"Project 3",
-        StartDate        :"15-07-2023",
-        EndDate         :"15-08-2023",
-        Duration        :"1 Month",
-        Description     :"Maap mata lumayan sakit",
-        Image           :"code.jpg",
-        NodeJs          :true,
-        ReactJs         :true,
-        NextJs          :true,
-        TypoScript      :true,
-    },
+    // {
+    //     ProjectName     :"Project 1",
+    //     StartDate        :"14-05-2023",
+    //     EndDate         :"14-07-2023",
+    //     Duration        :"2 Month",
+    //     Description     :"Maap mata lumayan sakit",
+    //     Image           :"code.jpg",
+    //     NodeJs          :true,
+    //     ReactJs         :true,
+    //     NextJs          :true,
+    //     TypoScript      :true,
+    // },
+    // {
+    //     ProjectName     :"Project 2",
+    //     StartDate        :"15-06-2023",
+    //     EndDate         :"15-07-2023",
+    //     Duration        :"1 Month",
+    //     Description     :"Maap mata lumayan sakit",
+    //     Image           :"code1.jpg",
+    //     NodeJs          :true,
+    //     ReactJs         :true,
+    //     NextJs          :true,
+    //     TypoScript      :true,
+    // },
+    // {
+    //     ProjectName     :"Project 3",
+    //     StartDate        :"15-07-2023",
+    //     EndDate         :"15-08-2023",
+    //     Duration        :"1 Month",
+    //     Description     :"Maap mata lumayan sakit",
+    //     Image           :"code.jpg",
+    //     NodeJs          :true,
+    //     ReactJs         :true,
+    //     NextJs          :true,
+    //     TypoScript      :true,
+    // },
 }
 // routes
 func main() {
     e := echo.New()
+    // connection database
+    connection.DatabaseConnect()
+
+    // connecting aset
     e.Static("/aset", "aset")
 
     // Routes Get
@@ -86,6 +92,22 @@ func home(c echo.Context) error{
     tmpl, err := template.ParseFiles("views/index.html")
     if err != nil {
         return c.JSON(http.StatusInternalServerError,err.Error())
+    }
+
+    // utk mengambil data di database
+    Querys,errQuery:= connection.Conn.Query(context.Background(), "SELECT * FROM tb_project")
+
+    if errQuery != nil {
+        return c.JSON(http.StatusInternalServerError, errQuery.Error())
+    }
+    var project []DataProject
+    for Querys.Next(){
+        var each = DataProject{}
+        err:= Querys.Scan(&each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript)
+        if err != nil {
+            return c.JSON(http.StatusInternalServerError,err.Error())
+        }
+        project = append(project, each)
     }
     // utk pemanggilan di html index
     Projects:=map[string]interface{}{
@@ -199,10 +221,12 @@ func submitEditProject(c echo.Context) error  {
     nextjs:=c.FormValue("input-nextjs")
     typoscript:=c.FormValue("input-typoscript")
 
+    sDate, _ := time.Parse("2006-01-02", startDate)
+	eDate, _ := time.Parse("2006-01-02", endDate)
     var projectedit = DataProject{
                 ProjectName:    nameProject,
-                StartDate:      startDate,
-                EndDate:        endDate,
+                StartDate:      sDate,
+                EndDate:        eDate,
                 Duration:       coutDuration(startDate, endDate),
                 Description:    description,
                 Image:          image,
@@ -238,8 +262,8 @@ func coutDuration(d1 string, d2 string) string {
 func addproject(c echo.Context) error  {
     // input data
     nameProject:=c.FormValue("input-project-name")
-    sDate:=c.FormValue("input-start-date")
-    eDate:=c.FormValue("input-end-date")
+    startDate:=c.FormValue("input-start-date")
+    endDate:=c.FormValue("input-end-date")
     description:=c.FormValue("input-description")
     image:=c.FormValue("input-img")
     nodejs:=c.FormValue("input-nodejs")
@@ -247,11 +271,14 @@ func addproject(c echo.Context) error  {
     nextjs:=c.FormValue("input-nextjs")
     typoscript:=c.FormValue("input-typoscript")
 
+    sDate,_:= time.Parse("2006-01-02", startDate)
+    eDate,_:= time.Parse("2006-01-02", endDate)
+
     var newProject = DataProject{
                 ProjectName:    nameProject,
                 StartDate:      sDate,
                 EndDate:        eDate,
-                Duration:       coutDuration(sDate, eDate),
+                Duration:       coutDuration(startDate, endDate),
                 Description:    description,
                 Image:          image,
                 NodeJs:         (nodejs=="nodeJs"),
