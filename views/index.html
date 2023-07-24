@@ -106,9 +106,8 @@
                   <p>{{$data.Description}}</p>
                 </div>
                 <div class="framework">
-                  {{if $data.NodeJs}}
-                  <i class="fa-brands fa-node fa-2x" id="nodejs"></i>{{end}} {{if $data.ReactJs}} <i class="fa-brands fa-react fa-2x" id="reactjs"></i>{{end}} {{if $data.NextJs}} <i class="fa-solid fa-n fa-2x" id="nextjs"></i>{{end}} {{if
-                  $data.TypoScript}} <i class="fa-solid fa-t fa-2x" id="typoscript"></i>{{end}}
+                  {{if $data.NodeJs}} <i class="fa-brands fa-node fa-2x" id="nodejs"></i>{{end}} {{if $data.ReactJs}} <i class="fa-brands fa-react fa-2x" id="reactjs"></i>{{end}} {{if $data.NextJs}}
+                  <i class="fa-brands fa-js fa-2x" id="nextjs"></i> {{end}} {{if $data.TypoScript}} <i class="fa-brands fa-golang fa-2x" id="typoscript"></i>{{end}}
                 </div>
                 <div class="btn-group">
                   <form action="/project-edit/{{$index}}" method="get">

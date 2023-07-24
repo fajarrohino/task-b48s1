@@ -35,30 +35,30 @@ var Projects = []DataProject{
         NextJs          :true,
         TypoScript      :true,
     },
-    {
-        ProjectName     :"Project 2",
-        StartDate        :"15-06-2023",
-        EndDate         :"15-07-2023",
-        Duration        :"1 Month",
-        Description     :"Maap mata lumayan sakit",
-        Image           :"code1.jpg",
-        NodeJs          :true,
-        ReactJs         :true,
-        NextJs          :true,
-        TypoScript      :true,
-    },
-    {
-        ProjectName     :"Project 3",
-        StartDate        :"15-07-2023",
-        EndDate         :"15-08-2023",
-        Duration        :"1 Month",
-        Description     :"Maap mata lumayan sakit",
-        Image           :"code.jpg",
-        NodeJs          :true,
-        ReactJs         :true,
-        NextJs          :true,
-        TypoScript      :true,
-    },
+    // {
+    //     ProjectName     :"Project 2",
+    //     StartDate        :"15-06-2023",
+    //     EndDate         :"15-07-2023",
+    //     Duration        :"1 Month",
+    //     Description     :"Maap mata lumayan sakit",
+    //     Image           :"code1.jpg",
+    //     NodeJs          :true,
+    //     ReactJs         :true,
+    //     NextJs          :true,
+    //     TypoScript      :true,
+    // },
+    // {
+    //     ProjectName     :"Project 3",
+    //     StartDate        :"15-07-2023",
+    //     EndDate         :"15-08-2023",
+    //     Duration        :"1 Month",
+    //     Description     :"Maap mata lumayan sakit",
+    //     Image           :"code.jpg",
+    //     NodeJs          :true,
+    //     ReactJs         :true,
+    //     NextJs          :true,
+    //     TypoScript      :true,
+    // },
 }
 // routes
 func main() {
@@ -209,7 +209,7 @@ func submitEditProject(c echo.Context) error  {
                 NodeJs:         (nodejs=="nodeJs"),
                 ReactJs:        (reactjs=="reactJs"),
                 NextJs:         (nextjs=="nextJs"),
-                TypoScript:     (typoscript=="typosctipt"),
+                TypoScript:     (typoscript=="typoscript"),
             }
     Projects[id] = projectedit
     return c.Redirect(http.StatusMovedPermanently, "/")
@@ -257,7 +257,7 @@ func addproject(c echo.Context) error  {
                 NodeJs:         (nodejs=="nodeJs"),
                 ReactJs:        (reactjs=="reactJs"),
                 NextJs:         (nextjs=="nextJs"),
-                TypoScript:     (typoscript=="typosctipt"),
+                TypoScript:     (typoscript=="typoscript"),
     }
     Projects = append(Projects, newProject)
     return c.Redirect(http.StatusMovedPermanently, "/")
