@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/aset/css/style.css" />
     <link rel="stylesheet" href="/aset/css/style-project.css" />
     <link rel="icon" href="/aset/images/dw.png" />
-    <title>Task Day13</title>
+    <title>Task Day14</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
   </head>
@@ -91,14 +91,14 @@
         <div class="list-project">
           <h2>my project</h2>
           <div id="contents-project" class="wrapper-list">
-            {{range $index, $d:=.Projects}}
+            {{range $index, $d:=.myproject}}
             <div class="list1">
               <div class="project-img">
                 <img src="/aset/images/{{$d.Image}}" alt="" />
               </div>
               <div class="project-content">
                 <h4>
-                  <a href="project-detail/{{$index}}">{{$d.ProjectName}}</a>
+                  <a href="project-detail/{{$d.Id}}">{{$d.ProjectName}}</a>
                 </h4>
                 <div class="detail-project">
                   <span>durasi : {{$d.Duration}}</span>
@@ -110,10 +110,10 @@
                   <i class="fa-brands fa-js fa-2x" id="nextjs"></i>{{end}} {{if $d.TypoScript}} <i class="fa-brands fa-golang fa-2x" id="typoscript"></i>{{end}}
                 </div>
                 <div class="btn-group">
-                  <form action="/project-edit/{{$index}}" method="get">
+                  <form action="project-edit/{{$d.Id}}" method="get">
                     <button>Edit</button>
                   </form>
-                  <form action="/project-delete/{{$index}}" method="post">
+                  <form action="/project-delete/{{$d.Id}}" method="post">
                     <button>Delete</button>
                   </form>
                 </div>
