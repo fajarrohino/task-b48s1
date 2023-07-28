@@ -66,6 +66,7 @@ var Projects = []DataProject{
 // routes
 func main() {
     e := echo.New()
+
     // connection database
     connection.DatabaseConnect()
 
@@ -79,6 +80,10 @@ func main() {
     e.GET("/contact", contact)
     e.GET("/project-detail/:id", projectdetail)
     e.GET("/project-edit/:id", projectedit)
+
+    // auth
+    e.GET("/form-register", formregister)
+    e.GET("/form-login", formlogin)
 
     // Routes Post
     e.POST("/", addproject)
@@ -145,7 +150,6 @@ func contact(c echo.Context) error  {
     }
     return tmpl.Execute(c.Response(),nil)
 }
-
     // GET("/project-detail/:id", projectdetail)
 func projectdetail(c echo.Context) error  {
     tmpl, err := template.ParseFiles("views/project-detail.html")
@@ -168,8 +172,7 @@ func projectdetail(c echo.Context) error  {
     }
     return tmpl.Execute(c.Response(),data)
 }
-
-    // GET("/project-edit/:id", projectedit)
+// GET("/project-edit/:id", projectedit)
 func projectedit(c echo.Context) error  {
     tmpl, err := template.ParseFiles("views/edit-project.html")
     if err != nil {
@@ -191,6 +194,24 @@ func projectedit(c echo.Context) error  {
     }
     return tmpl.Execute(c.Response(),edit)
 }
+    // GET("/form-register/", register)
+func formregister(c echo.Context) error  {
+    tmpl, err := template.ParseFiles("views/form-register.html")
+    if err != nil {
+        return c.JSON(http.StatusInternalServerError,err.Error())
+    }
+    return tmpl.Execute(c.Response(),nil)
+}
+    // e.GET("/form-login/", login)
+func formlogin(c echo.Context) error  {
+    tmpl, err := template.ParseFiles("views/form-login.html")
+    if err != nil {
+        return c.JSON(http.StatusInternalServerError,err.Error())
+    }
+    return tmpl.Execute(c.Response(),nil)
+}
+
+    // POST("/project-delete/:id", deleteProject)
 func deleteProject(c echo.Context) error  {
     id, _:= strconv.Atoi(c.Param("id"))
 
@@ -239,29 +260,7 @@ func submitEditProject(c echo.Context) error  {
     fmt.Println("data masuk", update.RowsAffected())
     return c.Redirect(http.StatusMovedPermanently, "/")
 }
-
-func coutDuration(d1 string, d2 string) string {
-    date1, _:= time.Parse("2006-01-2", d1)
-    date2, _:= time.Parse("2006-01-2", d2)
-
-    // selisih
-    distance :=date2.Sub(date1)
-    days := int(distance.Hours()/24)
-    weeks := days/7
-    months := weeks/30
-
-    if months > 12 {
-        return strconv.Itoa(months/12) + "Year"
-    }
-    if months > 0 {
-		return strconv.Itoa(months) + " Month"
-	}
-	if weeks > 0 {
-		return strconv.Itoa(weeks) + " Week"
-	}
-	return strconv.Itoa(days) + " Day"
-}
-    // POST("/", addproject)
+// POST("/", addproject)
 func addproject(c echo.Context) error  {
     // input data
     nameProject:=c.FormValue("input-project-name")
@@ -284,4 +283,26 @@ func addproject(c echo.Context) error  {
         return c.JSON(http.StatusInternalServerError, err.Error())
     }
     return c.Redirect(http.StatusMovedPermanently, "/")
+}
+
+func coutDuration(d1 string, d2 string) string {
+    date1, _:= time.Parse("2006-01-2", d1)
+    date2, _:= time.Parse("2006-01-2", d2)
+
+    // selisih
+    distance :=date2.Sub(date1)
+    days := int(distance.Hours()/24)
+    weeks := days/7
+    months := weeks/30
+
+    if months > 12 {
+        return strconv.Itoa(months/12) + "Year"
+    }
+    if months > 0 {
+		return strconv.Itoa(months) + " Month"
+	}
+	if weeks > 0 {
+		return strconv.Itoa(weeks) + " Week"
+	}
+	return strconv.Itoa(days) + " Day"
 }

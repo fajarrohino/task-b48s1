@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/aset/fontawesome/css/all.css" />
     <link rel="stylesheet" href="/aset/css/style.css" />
-    <link rel="stylesheet" href="/aset/css/test.css" />
+    <link rel="stylesheet" href="/aset/css/style-login.css" />
     <link rel="icon" href="/aset/images/dw.png" />
+    <title>Register</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-
-    <title>Testimonials</title>
   </head>
   <body>
     <!-- navbar -->
@@ -22,11 +21,11 @@
           </li>
           <li class="collapse-item"><a href="/">Home</a></li>
           <li class="collapse-item"><a href="form-project">Add Project</a></li>
-          <li class="collapse-item fw-bold"><a href="testimonial">Testimonials</a></li>
+          <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
         </ul>
       </div>
       <div class="aaa">
-        <a class="btn collapse-item" href="form-register">Register</a>
+        <a class="btn collapse-item fw-bold" href="form-register">Register</a>
         <a class="btn collapse-item" href="form-login">Login</a>
         <a class="bton collapse-item" href="contact"><button>Contact Me</button> </a>
       </div>
@@ -46,31 +45,30 @@
     </div>
     <!-- /navbar -->
 
-    <!-- testimonials-->
-    <div class="container-test">
-      <div class="wrapper-test">
-        <div class="title-test">
-          <h2>my testimonials</h2>
-        </div>
-        <div class="rating-test">
-          <h3>rating by star</h3>
-          <div class="btn-rating-test">
-            <button class="item1" onclick="testimonials()">All</button>
-            <button class="item2" onclick="testimonialFilter(1)"><i class="fa-solid fa-star"></i> 1</button>
-            <button class="item3" onclick="testimonialFilter(2)"><i class="fa-solid fa-star"></i> 2</button>
-            <button class="item4" onclick="testimonialFilter(3)"><i class="fa-solid fa-star"></i> 3</button>
-            <button class="item5" onclick="testimonialFilter(4)"><i class="fa-solid fa-star"></i> 4</button>
-            <button class="item6" onclick="testimonialFilter(5)"><i class="fa-solid fa-star"></i> 5</button>
-          </div>
-        </div>
-        <div class="content-test" id="testimonial">
-          <!-- dynamic -->
-        </div>
+    <!-- form-register -->
+    <div class="container">
+      <div class="text-center">
+        <h2 class="fw-bold">REGISTER YOUR A ACCOUNT</h2>
       </div>
+      <form>
+        <div class="mb-3">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="email" class="form-control" id="name" aria-describedby="emailHelp" />
+          </div>
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" />
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+      </form>
     </div>
-    <!-- /testimonials-->
-    <script src="/aset/js/nav.js"></script>
-    <script src="/aset/js/ajax.js"></script>
+    <!-- /form-register -->
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

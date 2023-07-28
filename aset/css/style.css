@@ -144,6 +144,10 @@ ul li a {
   color: black;
   font-weight: bold;
 }
+.aaa .btn:hover {
+  color: black;
+  font-weight: bold;
+}
 .bton button {
   background-color: black;
   color: white;
@@ -155,7 +159,7 @@ ul li a {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
-.bton {
+.aaa {
   margin-right: 95px;
 }
 .navi-right {
