@@ -144,14 +144,19 @@ ul li a {
   color: black;
   font-weight: bold;
 }
-.aaa .btn:hover {
-  color: black;
-  font-weight: bold;
+.aaa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.aaa ul {
+  display: flex;
+  align-items: center;
 }
 .bton button {
   background-color: black;
   color: white;
-  padding: 7px 10px;
+  padding: 5px 10px;
   border: none;
   border-radius: 15px;
 }
@@ -159,7 +164,7 @@ ul li a {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   transform: translateY(-1px);
 }
-.aaa {
+.bton {
   margin-right: 95px;
 }
 .navi-right {

@@ -20,14 +20,15 @@
             <a href="/"><img src="/aset/images/dw.png" class="logoDW" alt="" /></a>
           </li>
           <li class="collapse-item"><a href="/">Home</a></li>
-          <li class="collapse-item"><a href="form-project">Add Project</a></li>
+          <li class="collapse-item">
+            {{if .DataSessUser.IsLogin}}
+            <a href="form-project">Add Project</a>
+            {{else}}
+            <a href="list-project">My Project</a>
+            {{end}}
+          </li>
           <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
         </ul>
-      </div>
-      <div class="aaa">
-        <a class="btn collapse-item" href="form-register">Register</a>
-        <a class="btn collapse-item" href="form-login">Login</a>
-        <a class="bton collapse-item" href="contact"><button>Contact Me</button> </a>
       </div>
       <div class="navi-right" id="hamburger-btn">
         <button onclick="openHamburger()">

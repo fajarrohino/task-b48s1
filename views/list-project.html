@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/aset/fontawesome/css/all.css" />
     <link rel="stylesheet" href="/aset/css/style.css" />
-    <link rel="stylesheet" href="/aset/css/style-login.css" />
+    <link rel="stylesheet" href="/aset/css/style-project.css" />
     <link rel="icon" href="/aset/images/dw.png" />
-    <title>Register</title>
+    <title>Task Day15</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
   </head>
@@ -24,7 +24,7 @@
             {{if .DataSessUser.IsLogin}}
             <a href="form-project">Add Project</a>
             {{else}}
-            <a href="list-project">My Project</a>
+            <a href="project">My Project</a>
             {{end}}
           </li>
           <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
@@ -62,41 +62,39 @@
     </div>
     <!-- /navbar -->
 
-    <!-- form-register -->
-    <div class="container">
-      {{if .MessageFlash}} {{if .StatusFlash}}
-      <div class="alert alert-success d-flex justify-content-between" role="alert">
-        <strong>{{.MessageFlash}}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {{else}}
-      <div class="alert alert-danger d-flex justify-content-between" role="alert">
-        <strong>{{.MessageFlash}}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {{end}} {{end}}
-      <div class="text-center">
-        <h2 class="fw-bold">REGISTER YOUR A ACCOUNT</h2>
-      </div>
-      <form action="/register" method="post">
-        <div class="mb-3">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Name</label>
-            <input type="text" class="form-control" name="input-name" id="name-user" aria-describedby="emailHelp" />
+    <!-- my project -->
+    <div class="container-fluid mt-5">
+      <div class="wrapper-list-project">
+        <div class="list-project">
+          <h2>my project</h2>
+          <div id="contents-project" class="wrapper-list">
+            {{range $index, $d:=.myproject}}
+            <div class="list1">
+              <div class="project-img">
+                <img src="/aset/images/{{$d.Image}}" alt="" />
+              </div>
+              <div class="project-content">
+                <h4>
+                  <a href="project-detail/{{$d.Id}}">{{$d.ProjectName}}</a>
+                </h4>
+                <div class="detail-project">
+                  <span>durasi : {{$d.Duration}}</span>
+                  <br /><br />
+                  <p>{{$d.Description}}</p>
+                </div>
+                <div class="framework">
+                  {{if $d.NodeJs}} <i class="fa-brands fa-node fa-2x" id="nodejs"></i>{{end}} {{if $d.ReactJs}} <i class="fa-brands fa-react fa-2x" id="reactjs"></i>{{end}} {{if $d.NextJs}}
+                  <i class="fa-brands fa-js fa-2x" id="nextjs"></i>{{end}} {{if $d.TypoScript}} <i class="fa-brands fa-golang fa-2x" id="typoscript"></i>{{end}}
+                </div>
+              </div>
+            </div>
+            {{end}}
           </div>
-          <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" name="input-email" id="email" aria-describedby="emailHelp" />
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" name="input-password" id="password" />
-        </div>
-        <div class="text-end">
-          <button type="submit" class="btn btn-dark">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
-    <!-- /form-register -->
+
+    <script src="/js/nav.js"></script>
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
