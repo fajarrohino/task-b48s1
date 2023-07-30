@@ -23,11 +23,7 @@
           </li>
           <li class="collapse-item"><a href="/">Home</a></li>
           <li class="collapse-item">
-            {{if .DataSessUser.IsLogin}}
-            <a href="form-project">Add Project</a>
-            {{else}}
-            <a href="list-project">My Project</a>
-            {{end}}
+            <a href="listproject">Project</a>
           </li>
           <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
         </ul>
@@ -65,9 +61,15 @@
     <!-- /navbar -->
 
     <!-- onsubmit="addProject(event)" -->
+    <!-- enctype = application/x-www-form-urlencoded -> default -->
+    <!-- enctype = multipart/form-data -> nambahin data/file yng berhubungan dg byte -->
     <div class="container-form">
-      <form action="/" method="post">
+      <form action="/" method="post" enctype="multipart/form-data">
         <h3 class="text-center fw-bold">ADD MY PROJECT</h3>
+        <!-- <div class="mb-3">
+          <label class="form-label">Author</label>
+          <input type="text" class="form-control" id="input-author" name="input-author" />
+        </div> -->
         <div class="mb-3">
           <label class="form-label">Project Name</label>
           <input type="text" class="form-control" id="input-project-name" name="input-project-name" />
@@ -120,18 +122,6 @@
         </div>
       </form>
     </div>
-
-    <!-- list project -->
-    <div class="wrapper-list-project">
-      <div class="list-project">
-        <h2>my project</h2>
-        <div id="contents-project" class="wrapper-list">
-          <!-- dynamic -->
-          <!--dynamic content would be here -->
-        </div>
-      </div>
-    </div>
-    <!-- /list project -->
 
     <script src="/aset/js/project.js"></script>
     <script src="/aset/js/nav.js"></script>

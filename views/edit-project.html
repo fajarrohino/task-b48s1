@@ -66,9 +66,13 @@
 
     <!-- onsubmit="addProject(event)" -->
     <div class="container-form">
-      <form action="/project-edit/{{.data.Id}}" method="post">
+      <form action="/project-edit/{{.data.Id}}" method="post" enctype="multipart/form-data">
         <h3 class="text-center fw-bold">Update MY PROJECT</h3>
         <input type="hidden" class="form-control" name="id" value="{{.data.Id}}" />
+        <!-- <div class="mb-3">
+          <label class="form-label">Author</label>
+          <input type="text" class="form-control" id="input-author" name="input-author" />
+        </div> -->
         <div class="mb-3">
           <label class="form-label">Project Name</label>
           <input type="text" class="form-control" id="input-project-name" name="input-project-name" />

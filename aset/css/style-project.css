@@ -114,8 +114,8 @@ form button {
   background-color: rgb(230, 230, 230);
   padding: 20px;
 }
-.list-project h2 {
-  text-align: center;
+.wrapper-list-project h2 {
+  /* text-align: center; */
   text-transform: uppercase;
   font-weight: bold;
   padding: 30px;

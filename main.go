@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"day10/connection"
+	"day10/middleware"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -26,6 +27,7 @@ type DataProject struct{
         ReactJs         bool
         NextJs          bool
         TypoScript      bool
+        Author          string
 }
 
 type User struct{
@@ -43,61 +45,27 @@ type SessionData struct{
 // slice of struc ->mirip array of objec
 var sessionUser = SessionData{}
 
-var Projects = []DataProject{
-    // {
-    //     ProjectName     :"Project 1",
-    //     StartDate        :"14-05-2023",
-    //     EndDate         :"14-07-2023",
-    //     Duration        :"2 Month",
-    //     Description     :"Maap mata lumayan sakit",
-    //     Image           :"code.jpg",
-    //     NodeJs          :true,
-    //     ReactJs         :true,
-    //     NextJs          :true,
-    //     TypoScript      :true,
-    // },
-    // {
-    //     ProjectName     :"Project 2",
-    //     StartDate        :"15-06-2023",
-    //     EndDate         :"15-07-2023",
-    //     Duration        :"1 Month",
-    //     Description     :"Maap mata lumayan sakit",
-    //     Image           :"code1.jpg",
-    //     NodeJs          :true,
-    //     ReactJs         :true,
-    //     NextJs          :true,
-    //     TypoScript      :true,
-    // },
-    // {
-    //     ProjectName     :"Project 3",
-    //     StartDate        :"15-07-2023",
-    //     EndDate         :"15-08-2023",
-    //     Duration        :"1 Month",
-    //     Description     :"Maap mata lumayan sakit",
-    //     Image           :"code.jpg",
-    //     NodeJs          :true,
-    //     ReactJs         :true,
-    //     NextJs          :true,
-    //     TypoScript      :true,
-    // },
-}
+// var dataUsers = []User{}
+var Projects = []DataProject{}
 // routes
 func main() {
     e := echo.New()
-
+    // session
     e.Use(session.Middleware(sessions.NewCookieStore([]byte("session"))))
     // connection database
     connection.DatabaseConnect()
 
-    // connecting aset
+    // aset
     e.Static("/aset", "aset")
+    // aset
+    e.Static("/uploads", "uploads")
 
     // Routes Get
     e.GET("/", home)
     e.GET("/form-project", formproject)
     e.GET("/testimonial", testimonial)
     e.GET("/contact", contact)
-    e.GET("/list-project", project)
+    e.GET("/listproject", project)
     e.GET("/project-detail/:id", projectdetail)
     e.GET("/project-edit/:id", projectedit)
 
@@ -108,33 +76,40 @@ func main() {
     e.POST("/register", register)
     e.POST("/logout", logout)
 
-    // Routes Post
-    e.POST("/", addproject)
+    // Post
+    e.POST("/", middleware.UploadFile(addproject))
+    // e.POST("/", addproject)
     e.POST("/project-delete/:id", deleteProject)
-    e.POST("/project-edit/:Id", submitEditProject)
+    e.POST("/project-edit/:Id", middleware.UploadFile(submitEditProject))
+    // e.POST("/project-edit/:Id", submitEditProject)
    
 
-    e.Logger.Fatal(e.Start("localhost:5500"))
+    e.Logger.Fatal(e.Start("localhost:5000"))
 }
 
 // handlers
 
     // GET("/", home)
 func home(c echo.Context) error{
+    
     // utk mengambil data di database
-    Querys,errQuery:= connection.Conn.Query(context.Background(), "SELECT * FROM tb_project")
+    Querys,errQuery:= connection.Conn.Query(context.Background(), "SELECT tb_project.id, tb_user.name AS author, tb_project.project_name, tb_project.start_date, tb_project.end_date, tb_project.description, tb_project.image, tb_project.nodejs, tb_project.reactjs, tb_project.nextjs, tb_project.typoscript, tb_project.duration FROM tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id")
     if errQuery != nil {
         return c.JSON(http.StatusInternalServerError, errQuery.Error())
     }
     var inputProject []DataProject
+    // var inputUser []User
     for Querys.Next(){
         var each = DataProject{}
-        err:= Querys.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript, &each.Duration)
+        // var data = User{}
+        // var tempAuthor sql.NullString
+        err:= Querys.Scan(&each.Id, &each.Author, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript, &each.Duration)
 
         if err != nil {
-            return c.JSON(http.StatusInternalServerError,err.Error())
+            return c.JSON(http.StatusInternalServerError, map[string]string{"home" : err.Error()})
         }
         inputProject = append(inputProject, each)
+        // inputUser = append(inputUser, data)
     }
     //session
     sess, _:= session.Get("session", c)
@@ -147,10 +122,11 @@ func home(c echo.Context) error{
     }
     // utk pemanggilan di html index
     myProject:=map[string]interface{}{
+        "DataSessUser" :sessionUser,
         "myproject" : inputProject,
+        // "myauthor" : inputUser,
         "MessageFlash": sess.Values["message"], // regis berhasil
         "StatusFlash": sess.Values["status"], // true
-        "DataSessUser" :sessionUser,
     }
     delete(sess.Values, "message")
     delete(sess.Values, "status")
@@ -205,7 +181,7 @@ func testimonial(c echo.Context) error  {
 func contact(c echo.Context) error  {
     tmpl, err := template.ParseFiles("views/contact.html")
     if err != nil {
-        return c.JSON(http.StatusInternalServerError,err.Error())
+        return c.JSON(http.StatusInternalServerError, map[string]string{"Contact" :err.Error()})
     }
     //session
     sess, _:= session.Get("session", c)
@@ -228,7 +204,7 @@ func project(c echo.Context) error  {
         return c.JSON(http.StatusInternalServerError,err.Error())
     }
     // utk mengambil data di database
-    Querys,errQuery:= connection.Conn.Query(context.Background(), "SELECT * FROM tb_project")
+    Querys,errQuery:= connection.Conn.Query(context.Background(),"SELECT tb_project.id, tb_user.name AS author, tb_project.project_name, tb_project.start_date, tb_project.end_date, tb_project.description, tb_project.image, tb_project.nodejs, tb_project.reactjs, tb_project.nextjs, tb_project.typoscript, tb_project.duration FROM tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id")
 
     if errQuery != nil {
         return c.JSON(http.StatusInternalServerError, errQuery.Error())
@@ -236,20 +212,29 @@ func project(c echo.Context) error  {
     var inputProject []DataProject
     for Querys.Next(){
         var each = DataProject{}
-        err:= Querys.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript, &each.Duration)
+        err:= Querys.Scan(&each.Id, &each.Author, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Image, &each.NodeJs, &each.ReactJs, &each.NextJs, &each.TypoScript, &each.Duration)
 
         if err != nil {
             return c.JSON(http.StatusInternalServerError,err.Error())
         }
         inputProject = append(inputProject, each)
     }
+    // session
+    sess, _:= session.Get("session", c)
+    
+    if sess.Values["isLogin"] != true {
+        sessionUser.IsLogin = false
+    } else {
+        sessionUser.IsLogin = sess.Values["isLogin"].(bool)
+        sessionUser.Name = sess.Values["name"].(string)
+    }
     // utk pemanggilan di html index
     myProject:=map[string]interface{}{
         "myproject" : inputProject,
+        "DataSessUser" :sessionUser,
     }
     return tmpl.Execute(c.Response(),myProject)
-}
-
+}   
     // GET("/project-detail/:id", projectdetail)
 func projectdetail(c echo.Context) error  {
     tmpl, err := template.ParseFiles("views/project-detail.html")
@@ -260,10 +245,10 @@ func projectdetail(c echo.Context) error  {
 
     projectdetail := DataProject{}
     
-    errQuery :=connection.Conn.QueryRow(context.Background(), "SELECT * FROM tb_project WHERE id=$1",id).Scan(&projectdetail.Id, &projectdetail.ProjectName, &projectdetail.StartDate, &projectdetail.EndDate, &projectdetail.Description, &projectdetail.Image, &projectdetail.NodeJs, &projectdetail.ReactJs, &projectdetail.NextJs, &projectdetail.TypoScript, &projectdetail.Duration)
+    errQuery :=connection.Conn.QueryRow(context.Background(), "SELECT tb_project.id, tb_user.name AS author, tb_project.project_name, tb_project.start_date, tb_project.end_date, tb_project.description, tb_project.image, tb_project.nodejs, tb_project.reactjs, tb_project.nextjs, tb_project.typoscript, tb_project.duration FROM tb_project LEFT JOIN tb_user ON tb_project.author_id = tb_user.id WHERE tb_project.id=$1",id).Scan(&projectdetail.Id, &projectdetail.Author, &projectdetail.ProjectName, &projectdetail.StartDate, &projectdetail.EndDate, &projectdetail.Description, &projectdetail.Image, &projectdetail.NodeJs, &projectdetail.ReactJs, &projectdetail.NextJs, &projectdetail.TypoScript, &projectdetail.Duration)
 
     if errQuery != nil {
-        return c.JSON(http.StatusInternalServerError, errQuery.Error())
+        return c.JSON(http.StatusInternalServerError, map[string]string{"dimana error" :errQuery.Error()})
     }
     data :=map[string]interface{}{
         "Id" :id,
@@ -276,15 +261,15 @@ func projectdetail(c echo.Context) error  {
 func projectedit(c echo.Context) error  {
     tmpl, err := template.ParseFiles("views/edit-project.html")
     if err != nil {
-        return c.JSON(http.StatusInternalServerError,err.Error())
+        return c.JSON(http.StatusInternalServerError,map[string]string{"disini" : err.Error()})
     }
     id, _ := strconv.Atoi(c.Param("id"))
 
     editDp := DataProject{}
 
-    errEDP :=connection.Conn.QueryRow(context.Background(), "SELECT * FROM tb_project WHERE Id=$1",id).Scan(&editDp.Id, &editDp.ProjectName, &editDp.StartDate, &editDp.EndDate, &editDp.Description, &editDp.Image, &editDp.NodeJs, &editDp.ReactJs, &editDp.NextJs, &editDp.TypoScript, &editDp.Duration)
+    errEDP :=connection.Conn.QueryRow(context.Background(), "SELECT * FROM tb_project WHERE Id=$1",id).Scan(&editDp.Id, &editDp.ProjectName, &editDp.StartDate, &editDp.EndDate, &editDp.Description, &editDp.Image, &editDp.NodeJs, &editDp.ReactJs, &editDp.NextJs, &editDp.TypoScript, &editDp.Duration, &editDp.Author)
     if errEDP != nil {
-        return c.JSON(http.StatusInternalServerError, errEDP.Error())
+        return c.JSON(http.StatusInternalServerError, map[string]string{"error dimana" : errEDP.Error()})
     }
     sess, _:= session.Get("session", c)
     
@@ -309,7 +294,7 @@ func deleteProject(c echo.Context) error  {
 
     _, errDelete:=connection.Conn.Exec(context.Background(),"DELETE FROM tb_project WHERE Id=$1", id)
     if errDelete != nil {
-        return c.JSON(http.StatusInternalServerError, errDelete.Error())
+        return c.JSON(http.StatusInternalServerError, map[string]string{"apakah disini":errDelete.Error()})
     }
 
     // Projects = append(Projects[:id], Projects[id+1:]...)
@@ -320,15 +305,18 @@ func submitEditProject(c echo.Context) error  {
     // mengambil id dr parms
     // id,_:=strconv.Atoi(c.Param("id"))
     id:=c.FormValue("id")
+    // author:=c.FormValue("input-author")
     nameProject:=c.FormValue("input-project-name")
     startDate:=c.FormValue("input-start-date")
     endDate:=c.FormValue("input-end-date")
     description:=c.FormValue("input-description")
-    image:=c.FormValue("input-img")
+    // image:=c.FormValue("input-img")
     nodejs:=c.FormValue("input-nodejs")
     reactjs:=c.FormValue("input-reactjs")
     nextjs:=c.FormValue("input-nextjs")
     typoscript:=c.FormValue("input-typoscript")
+
+    image := c.Get("dataFile").(string)
 
     // check input data
     // fmt.Println(id, "ini iddddd")
@@ -347,34 +335,41 @@ func submitEditProject(c echo.Context) error  {
     // connection to database
     update, errupdate :=connection.Conn.Exec(context.Background(), "UPDATE tb_project SET project_name=$1, start_date=$2, end_date=$3, description=$4, image=$5, nodejs=$6, reactjs=$7, nextjs=$8, typoscript=$9, duration=$10 WHERE id=$11", nameProject, startDate, endDate, description, image, nodejs != "", reactjs != "", nextjs != "", typoscript != "",Duration, id)
     if errupdate != nil {
-        return c.JSON(http.StatusInternalServerError, errupdate.Error())
+        return c.JSON(http.StatusInternalServerError,map[string]string{"update error " :errupdate.Error()})
     }
     fmt.Println("data masuk", update.RowsAffected())
-    return c.Redirect(http.StatusMovedPermanently, "/")
+    return c.Redirect(http.StatusMovedPermanently, "/listproject")
 }
-// POST("/", addproject)
+// POST("/", addproject) => masih error
 func addproject(c echo.Context) error  {
     // input data
     nameProject:=c.FormValue("input-project-name")
     startDate:=c.FormValue("input-start-date")
     endDate:=c.FormValue("input-end-date")
     description:=c.FormValue("input-description")
-    image:=c.FormValue("input-img")
     nodejs:=c.FormValue("input-nodejs")
     reactjs:=c.FormValue("input-reactjs")
     nextjs:=c.FormValue("input-nextjs")
     typoscript:=c.FormValue("input-typoscript")
+    // get file
+    image:=c.Get("dataFile").(string)
+    
+    // session
+    sess,_:=session.Get("session", c)
+    author:=sess.Values["id"].(int)
+    // fmt.Println(nameProject,startDate,endDate,description,image,nodejs,reactjs,nextjs,typoscript)
+    // return c.JSON(http.StatusOK, "berhasil")
 
     // variabel duration
     Duration := coutDuration(startDate,endDate)
 
     // connection database
     _,err:=connection.Conn.Exec(context.Background(),
-    "INSERT INTO tb_project (project_name, start_date, end_date, description, image, nodejs, reactjs, nextjs, typoscript,  duration) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", nameProject, startDate, endDate, description, image,(nodejs=="nodeJs"), (reactjs=="reactJs"), (nextjs=="nextJs"), (typoscript=="typoscript"), Duration)
+    "INSERT INTO tb_project (project_name, start_date, end_date, description, image, nodejs, reactjs, nextjs, typoscript,  duration, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", nameProject, startDate, endDate, description, image, (nodejs=="nodeJs"), (reactjs=="reactJs"), (nextjs=="nextJs"), (typoscript=="typoscript"), Duration, author)
     if err != nil {
-        return c.JSON(http.StatusInternalServerError, err.Error())
+        return c.JSON(http.StatusInternalServerError, map[string]string{"di add":err.Error()} )
     }
-    return c.Redirect(http.StatusMovedPermanently, "/")
+    return c.Redirect(http.StatusMovedPermanently,"/contact")
 }
 
 func coutDuration(d1 string, d2 string) string {
