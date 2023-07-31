@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="fontawesome/css/all.css" />
     <link rel="stylesheet" href="/aset/css/style.css" />
     <link rel="stylesheet" href="/aset/css/style-contact.css" />
+    <link rel="stylesheet" href="/aset/css/style-nav.css" />
     <link rel="icon" href="/aset/images/dw.png" />
     <title>Contact Me</title>
 
@@ -21,11 +22,7 @@
           </li>
           <li class="collapse-item"><a href="/">Home</a></li>
           <li class="collapse-item">
-            {{if .DataSessUser.IsLogin}}
-            <a href="project">Project</a>
-            {{else}}
             <a href="listproject">Project</a>
-            {{end}}
           </li>
           <li class="collapse-item"><a href="testimonial">Testimonials</a></li>
         </ul>
@@ -35,7 +32,7 @@
           {{if .DataSessUser.IsLogin}}
           <li><a class="btn collapse-item" href="#">profil</a></li>
           <li>
-            <form action="logout" method="post"><button>Logout</button></form>
+            <form action="logout" method="post"><button class="btn">Logout</button></form>
           </li>
           {{else}}
           <li><a class="btn collapse-item" href="form-register">Register</a></li>

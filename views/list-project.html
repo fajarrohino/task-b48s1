@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/aset/fontawesome/css/all.css" />
     <link rel="stylesheet" href="/aset/css/style.css" />
     <link rel="stylesheet" href="/aset/css/style-project.css" />
+    <link rel="stylesheet" href="/aset/css/style-nav.css" />
     <link rel="icon" href="/aset/images/dw.png" />
     <title>My Project</title>
     <!-- bootstrap -->
@@ -27,7 +28,7 @@
       <div class="aaa">
         <ul>
           {{if .DataSessUser.IsLogin}}
-          <li><a class="btn collapse-item" href="#">profil</a></li>
+          <li><a class="btn collapse-item" href="#">{{.DataSessUser.Name}}</a></li>
           <li>
             <form action="logout" method="post"><button>Logout</button></form>
           </li>

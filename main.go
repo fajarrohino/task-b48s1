@@ -130,7 +130,11 @@ func home(c echo.Context) error{
     }
     delete(sess.Values, "message")
     delete(sess.Values, "status")
-    sess.Save(c.Request(), c.Response())
+    // save
+    errSess:= sess.Save(c.Request(), c.Response())
+    if errSess != nil{
+        return c.JSON(http.StatusInternalServerError, map[string]string{"sess": errSess.Error()})
+    }
     tmpl, err := template.ParseFiles("views/index.html")
     if err != nil {
         return c.JSON(http.StatusInternalServerError,err.Error())
@@ -233,6 +237,13 @@ func project(c echo.Context) error  {
         "myproject" : inputProject,
         "DataSessUser" :sessionUser,
     }
+    delete(sess.Values, "message")
+    delete(sess.Values, "status")
+    // save
+    errSess:= sess.Save(c.Request(), c.Response())
+    if errSess != nil{
+        return c.JSON(http.StatusInternalServerError, map[string]string{"sess": errSess.Error()})
+    }
     return tmpl.Execute(c.Response(),myProject)
 }   
     // GET("/project-detail/:id", projectdetail)
@@ -302,8 +313,6 @@ func deleteProject(c echo.Context) error  {
 }
     // POST("/project-edit/:id", submitEditProject)
 func submitEditProject(c echo.Context) error  {
-    // mengambil id dr parms
-    // id,_:=strconv.Atoi(c.Param("id"))
     id:=c.FormValue("id")
     // author:=c.FormValue("input-author")
     nameProject:=c.FormValue("input-project-name")
@@ -317,19 +326,6 @@ func submitEditProject(c echo.Context) error  {
     typoscript:=c.FormValue("input-typoscript")
 
     image := c.Get("dataFile").(string)
-
-    // check input data
-    // fmt.Println(id, "ini iddddd")
-    // fmt.Println(nameProject)
-    // fmt.Println(startDate)
-    // fmt.Println(endDate)
-    // fmt.Println(description)
-    // fmt.Println(image)
-    // fmt.Println(nodejs)
-    // fmt.Println(reactjs)
-    // fmt.Println(nextjs)
-    // fmt.Println(typoscript)
-
     Duration := coutDuration(startDate, endDate)
 
     // connection to database
@@ -355,21 +351,30 @@ func addproject(c echo.Context) error  {
     image:=c.Get("dataFile").(string)
     
     // session
-    sess,_:=session.Get("session", c)
-    author:=sess.Values["id"].(int)
-    // fmt.Println(nameProject,startDate,endDate,description,image,nodejs,reactjs,nextjs,typoscript)
-    // return c.JSON(http.StatusOK, "berhasil")
+    sess, errSess := session.Get("session", c)
+    if errSess != nil {
+        return c.JSON(http.StatusInternalServerError, map[string]string{"di sess add": errSess.Error() })
+    }
+    // sess.Save(c.Request(), c.Response())
+    // if errSess != nil{
+    //     return c.JSON(http.StatusInternalServerError, map[string]string{"sess": errSess.Error()})
+    // }
 
+    authorId:=sess.Values["Id"].(int)
     // variabel duration
     Duration := coutDuration(startDate,endDate)
 
+    // fmt.Println(nameProject,startDate,endDate,description,image,nodejs,reactjs,nextjs,typoscript)
+    // return c.JSON(http.StatusOK, "berhasil")
+
+
     // connection database
     _,err:=connection.Conn.Exec(context.Background(),
-    "INSERT INTO tb_project (project_name, start_date, end_date, description, image, nodejs, reactjs, nextjs, typoscript,  duration, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", nameProject, startDate, endDate, description, image, (nodejs=="nodeJs"), (reactjs=="reactJs"), (nextjs=="nextJs"), (typoscript=="typoscript"), Duration, author)
+    "INSERT INTO tb_project (project_name, start_date, end_date, description, image, nodejs, reactjs, nextjs, typoscript,  duration, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", nameProject, startDate, endDate, description, image, (nodejs=="nodeJs"), (reactjs=="reactJs"), (nextjs=="nextJs"), (typoscript=="typoscript"), Duration, authorId)
     if err != nil {
         return c.JSON(http.StatusInternalServerError, map[string]string{"di add":err.Error()} )
     }
-    return c.Redirect(http.StatusMovedPermanently,"/contact")
+    return c.Redirect(http.StatusMovedPermanently,"/listproject")
 }
 
 func coutDuration(d1 string, d2 string) string {
@@ -491,6 +496,8 @@ func login(c echo.Context) error {
 	sess.Values["Id"] = user.Id
 	sess.Values["isLogin"] = true
 	sess.Save(c.Request(),  c.Response())
+
+    fmt.Println("Author ID : ",sess.Values["Id"]) 
     
     return c.Redirect(http.StatusMovedPermanently, "/")
 }
